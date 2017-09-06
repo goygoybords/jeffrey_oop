@@ -10,10 +10,6 @@
 	->direct(Request::uri(), Request::method());
 
 
-	//github practice
-	/**
-sadsadsadsadadssdadsa
-sadsadasdad
-asdsadsadas
-	*.
+	//updated my code index.php with new code
+	//......
 ?>
