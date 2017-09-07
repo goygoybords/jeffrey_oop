@@ -4,10 +4,15 @@ namespace App\Controllers;
 
 	class PagesController
 	{
+		public function login()
+		{
+			$title = "Login";
+			return view('index', ['title' => $title]);
+		}
 		public function home()
 		{
 			$title = "Home";
-			return view('index', ['title' => $title]);
+			return view('home', ['title' => $title]);
 		}
 		public function about()
 		{

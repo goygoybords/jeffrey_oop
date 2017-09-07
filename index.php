@@ -9,7 +9,4 @@
 	Router::load('app/routes.php')
 	->direct(Request::uri(), Request::method());
 
-
-	//updated my code index.php with new code
-	//......
 ?>

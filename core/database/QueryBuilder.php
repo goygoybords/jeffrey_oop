@@ -9,6 +9,20 @@
 			$this->pdo = $pdo;
 		}
 		
+		public function select($table, $fields, $where = '1', $params = array() , $limit = '')
+ 		{
+	 		//fetchArgs, etc
+	        $fields = implode(', ', $fields);
+	        //create query
+	        $sql = "SELECT {$fields} FROM {$table} WHERE $where $limit";
+	        //prepare statement
+	        $cmd = $this->pdo->prepare($sql);
+	        $cmd->execute($params);
+	        $result = $cmd->fetchAll();
+	        return $result;
+	    }
+
+
 		public function selectAll($table)
 		{
 			$statement = $this->pdo->prepare("SELECT * FROM {$table}");
@@ -35,8 +49,24 @@
 			{
 				echo $e->getMessage();
 			}
-			
 		}
+
+
+ 		
+	    public function update($table, $fields, $where = '', $params)
+	    {
+		 	$i=0;
+		    foreach($fields as $key => $value)
+		    {
+		            $fields[$i] = $value."  = ?";
+		            $i++;
+		    }
+		    $set = implode(", ",$fields);
+		    $sql = "UPDATE {$table} SET {$set} {$where} ";
+		    $cmd = $this->db->prepare($sql);
+	        $result = $cmd->execute($params);
+	        return $result;
+	    }
 	}
 
  

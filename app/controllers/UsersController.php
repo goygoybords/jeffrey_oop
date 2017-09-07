@@ -19,7 +19,11 @@ use App\Core\App;
 			]  );
 
 			redirect('users');
-			
+		}
+		public function login($username, $password)
+		{
+			App::get('database')->select();
+			redirect('home');
 		}
 	} 
 
