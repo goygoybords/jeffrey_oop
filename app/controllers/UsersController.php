@@ -20,10 +20,26 @@ use App\Core\App;
 
 			redirect('users');
 		}
-		public function login($username, $password)
+		public function login()
 		{
-			App::get('database')->select();
-			redirect('home');
+			$table = "users";
+			$fields = array('*');
+			$where = "username = ? AND password = ? AND status = 1";
+			$params = array(htmlentities($_POST['username']), md5(htmlentities($_POST['password'])) );
+			$user = App::get('database')->select($table, $fields, $where, $params);
+			if(count($user) > 0)
+			{
+				foreach ($user as $l ) 
+				{
+					redirect('home');
+				}
+			}
+			else
+			{
+				redirect('/');
+				//redirect('/?=1');
+				//header("location: ../");
+			}
 		}
 	} 
 
